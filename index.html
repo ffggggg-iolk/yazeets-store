@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YAZEET'S - Tienda de Accesorios Roblox VKEI</title>
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🖤</text></svg>">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Text:ital@0;1&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!-- Estilos -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <!-- Header -->
+    <header id="header" class="header">
+        <div class="header-container">
+            <div class="logo-section">
+                <h1 class="logo">✦ YAZEET'S ✦</h1>
+                <p class="subtitle">Accesorios VKEI para Roblox</p>
+            </div>
+            
+            <nav class="nav-actions">
+                <a href="https://www.roblox.com/share/g/112408850" 
+                   class="btn btn-roblox" 
+                   target="_blank" 
+                   rel="noopener noreferrer">
+                    🔗 Unirse al Grupo
+                </a>
+                
+                <div id="authContainer" class="auth-container">
+                    <button id="loginBtn" class="btn btn-login" onclick="window.auth.login()">
+                        🔐 Ingresar con Google
+                    </button>
+                    <div id="userProfile" class="user-profile" style="display:none;">
+                        <img id="userAvatar" src="" alt="Avatar" class="user-avatar">
+                        <div class="user-info">
+                            <span id="userName" class="user-name"></span>
+                            <span id="userRole" class="user-role"></span>
+                        </div>
+                        <button class="btn btn-logout" onclick="window.auth.logout()">
+                            Salir
+                        </button>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-ornament top-left">✦</div>
+            <div class="hero-ornament top-right">✦</div>
+            
+            <h2 class="hero-title">Elegancia en Cada Accesorio</h2>
+            <p class="hero-text">Descubre nuestra colección exclusiva de items VKEI para Roblox</p>
+            <p class="hero-subtitle">Diséñate a ti mismo. Vívelo en oscuridad.</p>
+            
+            <div class="hero-ornament bottom-left">✦</div>
+            <div class="hero-ornament bottom-right">✦</div>
+        </div>
+        <div class="hero-decor">🖤</div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Panel de Administración (solo Owner) -->
+        <section id="adminPanel" class="admin-panel" style="display:none;">
+            <div class="admin-content">
+                <h3>⚙️ Panel de Administración</h3>
+                <div class="admin-tabs">
+                    <button class="tab-btn active" data-tab="users-tab">Usuarios</button>
+                    <button class="tab-btn" data-tab="settings-tab">Configuración</button>
+                </div>
+                
+                <div id="users-tab" class="tab-content active">
+                    <h4>Gestionar Roles</h4>
+                    <div id="usersList" class="users-list"></div>
+                </div>
+                
+                <div id="settings-tab" class="tab-content">
+                    <h4>Configuración Avanzada</h4>
+                    <p>Aquí irán opciones de configuración avanzada.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Categorías de Items -->
+        <section class="categories-section">
+            <!-- Pelos -->
+            <div class="category-block">
+                <div class="category-header">
+                    <h3 class="category-title">💇 Pelos</h3>
+                    <button class="btn-add-item" data-category="hairs" style="display:none;" onclick="window.ui.openAddItemModal('hairs')">+</button>
+                </div>
+                <div id="hairs" class="items-grid"></div>
+            </div>
+
+            <!-- Accesorios -->
+            <div class="category-block">
+                <div class="category-header">
+                    <h3 class="category-title">💎 Accesorios</h3>
+                    <button class="btn-add-item" data-category="accessories" style="display:none;" onclick="window.ui.openAddItemModal('accessories')">+</button>
+                </div>
+                <div id="accessories" class="items-grid"></div>
+            </div>
+
+            <!-- Emotes -->
+            <div class="category-block">
+                <div class="category-header">
+                    <h3 class="category-title">🎭 Emotes</h3>
+                    <button class="btn-add-item" data-category="emotes" style="display:none;" onclick="window.ui.openAddItemModal('emotes')">+</button>
+                </div>
+                <div id="emotes" class="items-grid"></div>
+            </div>
+
+            <!-- Paquetes de Animaciones -->
+            <div class="category-block">
+                <div class="category-header">
+                    <h3 class="category-title">🎬 Paquetes de Animaciones</h3>
+                    <button class="btn-add-item" data-category="animations" style="display:none;" onclick="window.ui.openAddItemModal('animations')">+</button>
+                </div>
+                <div id="animations" class="items-grid"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal: Elegir Username (Primera vez) -->
+    <div id="usernameModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <h2>Elige tu Username</h2>
+            <p>Necesitamos un nombre único para tu perfil YAZEET'S</p>
+            <form onsubmit="window.auth.submitUsername(event)">
+                <input 
+                    id="usernameInput" 
+                    type="text" 
+                    placeholder="Tu username único..." 
+                    required
+                    pattern="[a-zA-Z0-9_]{3,20}"
+                    title="3-20 caracteres: letras, números y guiones bajos"
+                >
+                <small>3-20 caracteres (letras, números, _)</small>
+                <button type="submit" class="btn btn-primary">Confirmar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal: Agregar/Editar Item -->
+    <div id="itemModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <button class="modal-close" onclick="window.ui.closeAddItemModal()">&times;</button>
+            <h2 id="modalTitle">Nuevo Item</h2>
+            
+            <form id="itemForm" onsubmit="window.ui.submitItem(event)">
+                <!-- Upload de Archivo -->
+                <div class="form-group">
+                    <label>Imagen o Video</label>
+                    <input 
+                        id="itemFile" 
+                        type="file" 
+                        accept="image/*,video/*" 
+                        required
+                    >
+                    <small id="fileSizeInfo"></small>
+                    <div id="previewContainer" style="display:none; margin-top: 1rem;">
+                        <img id="imagePreview" style="max-width: 200px; max-height: 200px; display:none;">
+                        <video id="videoPreview" style="max-width: 200px; max-height: 200px; display:none; border-radius: 0.5rem;" controls></video>
+                    </div>
+                </div>
+
+                <!-- Nombre -->
+                <div class="form-group">
+                    <label>Nombre del Item</label>
+                    <input type="text" id="itemName" placeholder="Ej: Dark Angel Hair" required>
+                </div>
+
+                <!-- Enlace Roblox -->
+                <div class="form-group">
+                    <label>Enlace de Roblox (obligatorio)</label>
+                    <input 
+                        type="url" 
+                        id="itemLink" 
+                        placeholder="https://www.roblox.com/catalog/..."
+                        required
+                    >
+                </div>
+
+                <!-- Descripción -->
+                <div class="form-group">
+                    <label>Descripción</label>
+                    <textarea id="itemDescription" placeholder="Describe este item..." rows="3"></textarea>
+                </div>
+
+                <!-- Precio -->
+                <div class="form-group">
+                    <label>Precio (Robux)</label>
+                    <input type="number" id="itemPrice" placeholder="0" min="0">
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Publicar</button>
+                    <button type="button" class="btn btn-secondary" onclick="window.ui.closeAddItemModal()">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal: Preview Expandido de Video -->
+    <div id="videoModal" class="modal video-modal" style="display:none;" onclick="window.ui.closeVideoModal()">
+        <div class="modal-content video-modal-content" onclick="event.stopPropagation();">
+            <button class="modal-close" onclick="window.ui.closeVideoModal()">&times;</button>
+            <video id="fullscreenVideo" width="100%" controls autoplay>
+                Tu navegador no soporta videos
+            </video>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>YAZEET'S © 2026 — Tienda VKEI Premium para Roblox</p>
+            <p class="footer-subtitle">Diseñado con elegancia gótica y pasión oscura 🖤</p>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js"></script>
+
+    <!-- Configuración Firebase (EDITAR CON TUS CREDENCIALES) -->
+    <script src="js/firebaseConfig.js"></script>
+
+    <!-- Scripts de la App -->
+    <script src="js/firestore.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
