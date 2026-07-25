@@ -1,19 +1,16 @@
 // ============================================
 // FIREBASE CONFIGURATION
-// EDITA ESTO CON TUS CREDENCIALES DE FIREBASE
 // ============================================
 
-// Importa Firebase (ya incluido en index.html)
-// const firebase = window.firebase;
+// Firebase ya está inicializado (ver index.html)
 
 const firebaseConfig = {
-  // REEMPLAZA ESTO CON TUS CREDENCIALES DE FIREBASE
-  apiKey: "AIzaSyDxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-  authDomain: "yazeets-store.firebaseapp.com",
-  projectId: "yazeets-store",
-  storageBucket: "yazeets-store.appspot.com",
-  messagingSenderId: "123456789012",
-  appId: "1:123456789012:web:abcdef1234567890"
+  apiKey: "AIzaSyDcUwV5xdIBYhPtWaaCTs2o5IKmW4mEsaA",
+  authDomain: "yazeet-s-store.firebaseapp.com",
+  projectId: "yazeet-s-store",
+  storageBucket: "yazeet-s-store.firebasestorage.app",
+  messagingSenderId: "420769287932",
+  appId: "1:420769287932:web:1a9b42095cea32e76e9179"
 };
 
 // Inicializa Firebase
